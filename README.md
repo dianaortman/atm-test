@@ -7,6 +7,7 @@ Required elements:
 an option to clear the input
 3. Display to show the amount of money to deposit or withdraw
 4. Display to show account balance
+
 What is not required:
 1. Login (user is already logged)
 2. Choosing a card (there is only one card/account)
