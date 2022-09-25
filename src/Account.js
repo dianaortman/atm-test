@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-// import NumPad from '../node_modules/react-numpad-material/build/index';
-// import { NumericInput } from '../node_modules/numeric-keyboard/dist/numeric_keyboard.react.js';
-
 
 export default class Account extends Component {
   constructor(props){
@@ -16,9 +13,14 @@ handleClearClick(e) {
   e.preventDefault();
   this.inputBox.value = '';
 }
+handleNumberClick(e) {
+  e.preventDefault();
+  const number = parseInt(e.target.value);
+  this.inputBox.value += number;
+}
 handleDepositClick(e) {
   e.preventDefault();
-  let amount = parseInt(this.inputBox.value);
+  const amount = parseInt(this.inputBox.value);
   if (amount > 0) {
     let newBalance = this.state.balance + amount;
     this.setState({
@@ -30,14 +32,10 @@ handleDepositClick(e) {
     alert("Nth to Deposit");
     this.handleClearClick(e);
   }
-  // this.setState({
-  //   type: e.target.title,
-  //   amount: amount
-  // })
 }
 handleWithdrawClick(e) {
   e.preventDefault();
-  let amount = parseInt(this.inputBox.value);
+  const amount = parseInt(this.inputBox.value);
   if (this.state.balance >= amount && amount > 0) {
     let newBalance = this.state.balance - amount;
     this.setState({
@@ -50,9 +48,6 @@ handleWithdrawClick(e) {
     this.handleClearClick(e);
   }
 }
-// input(val) {
-//   console.log('fgdhf')
-// }
 
 render() {
   let balanceClass = 'balance';
@@ -63,18 +58,27 @@ render() {
   return (
     <div className="account">
       <h2>{this.props.name}</h2>
-      <div>My balance:</div>
-      <div className={balanceClass}>${this.state.balance}</div>
+      <p>My balance:</p>
+      <p className={balanceClass}>${this.state.balance}</p>
       <input type="number" placeholder="Enter an amount" ref={(input) => {this.inputBox = input}} />
       <button type="button" title="Deposit" onClick={(e) => this.handleDepositClick(e)}>Deposit</button>
       <button type="button" title="Withdraw" onClick={(e)=> this.handleWithdrawClick(e)}>Withdraw</button>
-
-      <div className="operation">{this.state.type}: ${this.state.amount}</div>
+      <div className="btnNumber-wrapper">
+        <button className="btnNumber" type="button"  onClick={(e)=> this.handleNumberClick(e)} value="1">1</button>
+        <button className="btnNumber" type="button"  onClick={(e)=> this.handleNumberClick(e)} value="2">2</button>
+        <button className="btnNumber" type="button"  onClick={(e)=> this.handleNumberClick(e)} value="3">3</button>
+        <button className="btnNumber" type="button"  onClick={(e)=> this.handleNumberClick(e)} value="4">4</button>
+        <button className="btnNumber" type="button"  onClick={(e)=> this.handleNumberClick(e)} value="5">5</button>
+        <button className="btnNumber" type="button"  onClick={(e)=> this.handleNumberClick(e)} value="6">6</button>
+        <button className="btnNumber" type="button"  onClick={(e)=> this.handleNumberClick(e)} value="7">7</button>
+        <button className="btnNumber" type="button"  onClick={(e)=> this.handleNumberClick(e)} value="8">8</button>
+        <button className="btnNumber" type="button"  onClick={(e)=> this.handleNumberClick(e)} value="9">9</button>
+        <button className="btnNumber" type="button"  onClick={(e)=> this.handleNumberClick(e)} value=""></button>
+        <button className="btnNumber" type="button"  onClick={(e)=> this.handleNumberClick(e)} value="0">0</button>
+        <button className="btnNumber" type="button"  onClick={(e)=> this.handleNumberClick(e)} value="x">x</button>
+      </div>
+      <p className="operation">{this.state.type}: ${this.state.amount}</p>
       <button type="button" title="clear" onClick={(e)=> this.handleClearClick(e)}>Clear</button>
-      {/* <div className="input">
-        <label>Amount: </label>
-        <NumericInput type="number" placeholder="touch to input" onInput={this.input.bind(this)} />
-      </div> */}
     </div>
   )
 }

@@ -49,3 +49,17 @@ body {
   background-color: #ff002973;
   color: #FFFFFF;
 }
+
+.btnNumber-wrapper {
+  border: 1px solid #676767;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 8px;
+  margin: 15px;
+}
+
+button.btnNumber {
+  padding: 5px 20px;
+  font-size: 30px;
+}
